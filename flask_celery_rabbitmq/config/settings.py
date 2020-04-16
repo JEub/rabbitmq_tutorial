@@ -11,11 +11,11 @@ if os.path.exists(ENV):
     dotenv.load_dotenv(ENV)
 
 environment = {
-    'DB_USER': os.environ.get('DB_USER', 'postgres'),
-    'DB_PASSWORD': os.environ.get('DB_PASSWORD', 'postgres'),
-    'DB_HOST': os.environ.get('DB_HOST', 'localhost'),
-    'DB_PORT': os.environ.get('DB_PORT', 5432),
-    'DB_DB': os.environ.get('DB_DB', 'postgres'),
+    'POSTGRES_USER': os.environ.get('POSTGRES_USER', 'postgres'),
+    'POSTGRES_PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
+    'POSTGRES_HOST': os.environ.get('POSTGRES_HOST', 'localhost'),
+    'POSTGRES_PORT': os.environ.get('POSTGRES_PORT', 5432),
+    'POSTGRES_DB': os.environ.get('POSTGRES_DB', 'postgres'),
     'RABBIT_MQ_USER': os.environ.get('RABBIT_MQ_USER', 'guest'),
     'RABBIT_MQ_PASSWORD':
         os.environ.get('RABBIT_MQ_PASSWORD', 'guest'),
@@ -34,11 +34,11 @@ class DevConfig(BaseConfig):
     FLASK_ENV = 'development'
     DEBUG = True
     SQLALCHEMY_DATABASE_URI = (
-        f"postgresql://{environment['DB_USER']}"
-        f":{environment['DB_PASSWORD']}"
-        f"@{environment['DB_HOST']}"
-        f":{environment['DB_PORT']}/"
-        f"{environment['DB_DB']}"
+        f"postgresql://{environment['POSTGRES_USER']}"
+        f":{environment['POSTGRES_PASSWORD']}"
+        f"@{environment['POSTGRES_HOST']}"
+        f":{environment['POSTGRES_PORT']}/"
+        f"{environment['POSTGRES_DB']}"
     )
     CELERY_BROKER = (
         f"pyamqp://{environment['RABBIT_MQ_USER']}""
@@ -55,11 +55,11 @@ class DevConfig(BaseConfig):
 class ProductionConfig(BaseConfig):
     FLASK_ENV = 'production'
     SQLALCHEMY_DATABASE_URI = (
-        f"postgresql://{environment['DB_USER']}"
-        f":{environment['DB_PASSWORD']}"
-        f"@{environment['DB_HOST']}"
-        f":{environment['DB_PORT']}/"
-        f"{environment['DB_DB']}"
+        f"postgresql://{environment['POSTGRES_USER']}"
+        f":{environment['POSTGRES_PASSWORD']}"
+        f"@{environment['POSTGRES_HOST']}"
+        f":{environment['POSTGRES_PORT']}/"
+        f"{environment['POSTGRES_DB']}"
     )
     CELERY_BROKER = (
         f"pyamqp://{environment['RABBIT_MQ_USER']}""
