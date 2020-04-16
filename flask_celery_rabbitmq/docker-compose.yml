@@ -12,7 +12,7 @@ services:
       - POSTGRES_PASSWORD=D19M10Y88
   migration:
     build: .
-    envrionment:
+    environment:
       - APP_ENV=${APP_ENV}
     command: flask db upgrade
     depends_on:
